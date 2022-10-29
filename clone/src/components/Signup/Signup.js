@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Confirm from "./Confirm";
+import { useDispatch } from "react-redux";
+import { __addSlack } from "../../redux/slackSlice";
+import { clearSlack } from "../../redux/slackSlice";
 const Signup = () => {
+  const dispatch = useDispatch();
   const [isEdit, SetisEdit] = useState(true);
+  const [slack, setSlack] = useState("");
 
   const onSubmitHandler = () => {
     SetisEdit(!isEdit);
+    dispatch(clearSlack());
+    dispatch(__addSlack({ email: slack }));
+  };
+  const onChangeHandler = (e) => {
+    setSlack(e.target.value);
   };
 
   return (
@@ -29,9 +39,14 @@ const Signup = () => {
             </span>
             로 로그인하는 걸 추천드려요.
           </div>
-          <InputBox style={{ fontSize: 20 }} placeholder="name@work-email.com">
-            {}
-          </InputBox>
+          <InputBox
+            type="text"
+            name="slack"
+            value={slack}
+            onChange={onChangeHandler}
+            style={{ fontSize: 20 }}
+            placeholder="name@work-email.com"
+          />
           <div>
             <ContinueBtn onClick={() => onSubmitHandler()}>계속</ContinueBtn>
           </div>

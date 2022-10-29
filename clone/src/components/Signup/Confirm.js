@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearSlack, __addSlack, __confirmSlack } from "../../redux/slackSlice";
 
 const Confirm = () => {
+  const confirmdata = useSelector((state) => state.slack.slack);
+  console.log(confirmdata[0]?.payload);
+  const confirmcode = confirmdata[0]?.data?.message;
+  console.log(confirmcode);
+  const dispatch = useDispatch();
   const [Confirmcode, SetConfirmcode] = useState({
     one: "",
     two: "",
@@ -11,24 +18,26 @@ const Confirm = () => {
     five: "",
     six: "",
   });
+  console.log(Confirmcode.one);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     SetConfirmcode({ ...Confirmcode, [name]: value });
     console.log(Confirmcode);
   };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (
+      Confirmcode.one === confirmcode[0] ||
+      Confirmcode.two === confirmcode[1] ||
+      Confirmcode.three === confirmcode[2] ||
+      Confirmcode.four === confirmcode[3] ||
+      Confirmcode.five === confirmcode[4] ||
+      Confirmcode.six === confirmcode[5]
+    )
+      dispatch(__confirmSlack(confirmdata[0]?.payload));
 
-  const onSubmitHandler = () => {
-    // dispatch(
-    //   __PostCode(
-    //     Confirmcode.one +
-    //       Confirmcode.two +
-    //       Confirmcode.three +
-    //       Confirmcode.four +
-    //       Confirmcode.five +
-    //       Confirmcode.six
-    //   )
-    // );
+    // e.preventDefault();
   };
 
   return (
@@ -102,7 +111,7 @@ const Confirm = () => {
         </ConfirmCtn>
       </ConfirmWrapper>
 
-      <SubmitBtn>제출 </SubmitBtn>
+      <SubmitBtn onClick={onSubmitHandler}>제출 </SubmitBtn>
       <TextBottom>
         고객님의 코드를 찾을 수 없나요? 스팸 폴더를 확인해 보세요!{" "}
       </TextBottom>
