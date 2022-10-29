@@ -9,7 +9,7 @@ const PostBox = () => {
         <DateBtn>10월 28일</DateBtn>
         <ProfileBox>
           <ProfileImg />
-          <ProfileNic>예상기(React 기술매니저) </ProfileNic>
+          <ProfileNic>김지용(React 기술매니저) </ProfileNic>
           <ProfileTime>오전11:05</ProfileTime>
         </ProfileBox>
 
