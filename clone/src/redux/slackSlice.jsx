@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useState } from "react";
 import { instance } from "../mytools/instance";
 import { PostApi } from "../mytools/instance";
 
@@ -28,6 +29,7 @@ export const __addSlack = createAsyncThunk(
     console.log(payload);
     try {
       const { data } = await PostApi.postSlack(payload);
+
       console.log(data);
       return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
@@ -108,9 +110,10 @@ export const slackSlice = createSlice({
     [__addSlack.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
+
       console.log(action.payload);
 
-      state.slack.push(action.payload);
+      state.slack = action.payload;
     },
     [__addSlack.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.

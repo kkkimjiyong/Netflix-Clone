@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import ProfileContent from "./ProfileContent";
 
 const Rigth = () => {
+  const [isOpen, SetisOpen] = useState(false);
   return (
     <div>
-      <ProfileBox></ProfileBox>
+      <ProfileBox onClick={() => SetisOpen(!isOpen)}></ProfileBox>{" "}
+      {isOpen && <ProfileContent>아아아아아</ProfileContent>}
     </div>
   );
 };

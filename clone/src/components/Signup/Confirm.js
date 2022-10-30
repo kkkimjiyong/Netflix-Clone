@@ -6,9 +6,12 @@ import { clearSlack, __addSlack, __confirmSlack } from "../../redux/slackSlice";
 
 const Confirm = () => {
   const confirmdata = useSelector((state) => state.slack.slack);
+  console.log(confirmdata.data.message);
+  console.log(confirmdata.payload.email);
   console.log(confirmdata[0]?.payload);
+
   const confirmcode = confirmdata[0]?.data?.message;
-  console.log(confirmcode);
+  console.log(confirmdata);
   const dispatch = useDispatch();
   const [Confirmcode, SetConfirmcode] = useState({
     one: "",
@@ -24,16 +27,33 @@ const Confirm = () => {
     const { name, value } = e.target;
     SetConfirmcode({ ...Confirmcode, [name]: value });
     console.log(Confirmcode);
+    console.log(
+      Confirmcode.one +
+        Confirmcode.two +
+        Confirmcode.three +
+        Confirmcode.four +
+        Confirmcode.five +
+        Confirmcode.six
+    );
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    // if (
+    //   Confirmcode.one === confirmcode[0] ||
+    //   Confirmcode.two === confirmcode[1] ||
+    //   Confirmcode.three === confirmcode[2] ||
+    //   Confirmcode.four === confirmcode[3] ||
+    //   Confirmcode.five === confirmcode[4] ||
+    //   Confirmcode.six === confirmcode[5]
+    // )
     if (
-      Confirmcode.one === confirmcode[0] ||
-      Confirmcode.two === confirmcode[1] ||
-      Confirmcode.three === confirmcode[2] ||
-      Confirmcode.four === confirmcode[3] ||
-      Confirmcode.five === confirmcode[4] ||
-      Confirmcode.six === confirmcode[5]
+      Confirmcode.one +
+        Confirmcode.two +
+        Confirmcode.three +
+        Confirmcode.four +
+        Confirmcode.five +
+        Confirmcode.six ==
+      confirmdata.data.message
     )
       dispatch(__confirmSlack(confirmdata[0]?.payload));
 
