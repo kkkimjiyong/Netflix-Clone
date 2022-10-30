@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSlack, __addSlack, __confirmSlack } from "../../redux/slackSlice";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Confirm = () => {
+  const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
-  console.log(confirmdata[0]?.payload);
-  const confirmcode = confirmdata[0]?.data?.message;
-  console.log(confirmcode);
+  const email = confirmdata?.payload;
+  const slack = confirmdata.data?.message;
+
   const dispatch = useDispatch();
   const [Confirmcode, SetConfirmcode] = useState({
     one: "",
@@ -19,25 +21,27 @@ const Confirm = () => {
     six: "",
   });
   console.log(Confirmcode.one);
-
+  //각각의 input 창에 대한 값 설정
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     SetConfirmcode({ ...Confirmcode, [name]: value });
-    console.log(Confirmcode);
   };
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  //제출하기전에 이메일에 보내진 코드와 input 창에 넣어진 코드와 같은지 확인!
+  const onSubmitHandler = () => {
     if (
-      Confirmcode.one === confirmcode[0] ||
-      Confirmcode.two === confirmcode[1] ||
-      Confirmcode.three === confirmcode[2] ||
-      Confirmcode.four === confirmcode[3] ||
-      Confirmcode.five === confirmcode[4] ||
-      Confirmcode.six === confirmcode[5]
-    )
-      dispatch(__confirmSlack(confirmdata[0]?.payload));
-
-    // e.preventDefault();
+      Confirmcode.one +
+        Confirmcode.two +
+        Confirmcode.three +
+        Confirmcode.four +
+        Confirmcode.five +
+        Confirmcode.six ===
+      slack
+    ) {
+      dispatch(__confirmSlack(email));
+      navigate("/");
+    } else {
+      return alert("코드가 맞지 않습니다!");
+    }
   };
 
   return (

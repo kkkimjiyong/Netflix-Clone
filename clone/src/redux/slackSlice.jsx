@@ -110,7 +110,7 @@ export const slackSlice = createSlice({
       state.isSuccess = true;
       console.log(action.payload);
 
-      state.slack.push(action.payload);
+      state.slack = action.payload;
     },
     [__addSlack.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
