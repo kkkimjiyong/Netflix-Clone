@@ -19,6 +19,19 @@ const Signup = () => {
     setSlack(e.target.value);
   };
 
+  let href = window.location.href;
+  //href값에서 code값만 거내오면 된다.
+  console.log(href);
+  let params = new URL(window.location.href).searchParams;
+  let code = params.get("code");
+
+  //이 코드를 백엔드로 보내주면됨
+  console.log(code);
+
+  const REST_API_KEY = "52825ae71c4b6cef839a32553fcc6890";
+  const REDIRECT_URI = "http://localhost:3000/signup/oauth";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
   return (
     <>
       {isEdit ? (
@@ -52,14 +65,15 @@ const Signup = () => {
           </div>
 
           <MidLine className="line">또는</MidLine>
-          <GoogleBtn>
+          <a href={KAKAO_AUTH_URL}>
             <img
-              style={{ width: "25px" }}
-              src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
-              alt="sd"
+              // onClick={() => SetLoading(false)}
+              style={{ width: "300px", cursor: "pointer" }}
+              src="https://i.ibb.co/r2DPcWy/kakao-login-medium-narrow.png"
+              alt="kakao-login-medium-narrow"
+              border="0"
             />
-            Google로 계속
-          </GoogleBtn>
+          </a>
           <AppleBtn>
             <img
               style={{ width: "18px" }}
