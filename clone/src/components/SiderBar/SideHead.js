@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import HeaderContent from "./HeaderContent";
 
 const SideHead = () => {
+  const [isOpen, SetisOpen] = useState(false);
   return (
-    <Header>
-      HangHae99
-      <PostBtn></PostBtn>
-    </Header>
+    <div>
+      <Header onClick={() => SetisOpen(!isOpen)}>
+        HangHae99
+        <PostBtn></PostBtn>
+      </Header>
+      {isOpen && <HeaderContent />}
+    </div>
   );
 };
 
@@ -32,6 +37,7 @@ const PostBtn = styled.div`
   border-radius: 30px;
   width: 30px;
   height: 30px;
+
   :hover {
     background-color: #5d3d5e;
   }

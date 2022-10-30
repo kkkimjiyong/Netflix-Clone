@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useState } from "react";
 import { instance } from "../mytools/instance";
 import { PostApi } from "../mytools/instance";
 
@@ -28,6 +29,7 @@ export const __addSlack = createAsyncThunk(
     console.log(payload);
     try {
       const { data } = await PostApi.postSlack(payload);
+
       console.log(data);
       return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
@@ -108,6 +110,7 @@ export const slackSlice = createSlice({
     [__addSlack.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
+
       console.log(action.payload);
 
       state.slack = action.payload;
