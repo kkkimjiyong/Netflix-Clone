@@ -6,6 +6,7 @@ const ProfileContent = () => {
     <ProfileDetail>
       <FirstBox>
         <ProfileBox>
+          {/* 사용자의 프로필사진이 들어가는 곳  */}
           <ProfileSqr></ProfileSqr>
           김지용
         </ProfileBox>
