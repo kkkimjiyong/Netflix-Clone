@@ -6,7 +6,6 @@ import { clearSlack, __addSlack, __confirmSlack } from "../../redux/slackSlice";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Confirm = () => {
-<<<<<<< Updated upstream
   const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
   const email = confirmdata?.payload;
@@ -45,8 +44,6 @@ const Confirm = () => {
     }
   };
 
-=======
->>>>>>> Stashed changes
   return (
     <SignupCtn>
       <div>

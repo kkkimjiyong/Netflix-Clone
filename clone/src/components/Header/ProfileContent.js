@@ -19,9 +19,9 @@ const ProfileContent = () => {
         <StandardDiv>프로필</StandardDiv>
         <StandardDiv>환경설정</StandardDiv>
       </SecondBox>
-      <ThirdBox>
+      <SecondBox>
         <StandardDiv>다운로드</StandardDiv>
-      </ThirdBox>
+      </SecondBox>
 
       <StandardDiv className="logout">로그아웃</StandardDiv>
     </ProfileDetail>
@@ -33,10 +33,6 @@ const FirstBox = styled.div`
 `;
 
 const SecondBox = styled.div`
-  padding: 10px 0px 10px 0px;
-  border-bottom: 1px solid #d8d8d8;
-`;
-const ThirdBox = styled.div`
   padding: 10px 0px 10px 0px;
   border-bottom: 1px solid #d8d8d8;
 `;
