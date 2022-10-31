@@ -26,10 +26,10 @@ const MainInput = () => {
 };
 
 const InputCtn = styled.div`
-  position: fixed;
+  position: relative;
   bottom: 0px;
   margin: 20px;
-  width: 83%;
+  width: 98%;
   height: 150px;
   border: 2px solid #e2e2e2;
   border-radius: 10px;
@@ -45,7 +45,7 @@ const InputTopBox = styled.div`
 
 const InputMidBox = styled.input`
   font-size: 18px;
-  width: 98.8%;
+  width: 98%;
   height: 40px;
   padding: 10px;
   border: none;

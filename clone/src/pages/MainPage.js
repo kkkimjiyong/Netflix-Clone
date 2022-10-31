@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import MainBody from "../components/MainBody/MainBody";
 import Input from "../components/Header/Input";
-import Rigth from "../components/Header/Rigth";
+import Right from "../components/Header/Right";
 import SideHead from "../components/SiderBar/SideHead";
 import Left from "../components/Header/Left";
 import SideBody from "../components/SiderBar/SideBody";
@@ -22,7 +22,7 @@ const MainPage = () => {
           <Left />
 
           <Input />
-          <Rigth
+          <Right
             SetisOpen={SetisOpen}
             isOpen={isOpen}
             profile={profile}

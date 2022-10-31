@@ -3,12 +3,18 @@ import styled from "styled-components";
 import { useState } from "react";
 import ProfileContent from "./ProfileContent";
 
-const Rigth = () => {
-  const [isOpen, SetisOpen] = useState(false);
+const Right = ({ isOpen, SetisOpen, setProfile, profile }) => {
   return (
     <div>
       <ProfileBox onClick={() => SetisOpen(!isOpen)}></ProfileBox>{" "}
-      {isOpen && <ProfileContent>아아아아아</ProfileContent>}
+      {isOpen && (
+        <ProfileContent
+          isOpen={isOpen}
+          SetisOpen={SetisOpen}
+          setProfile={setProfile}
+          profile={profile}
+        />
+      )}
     </div>
   );
 };
@@ -27,4 +33,4 @@ const ProfileBox = styled.div`
   }
 `;
 
-export default Rigth;
+export default Right;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ProfileContent = ({ isOpen, SetisOpen, setProfile, profile }) => {
   const onClickProfile = () => {
-    SetisOpen(false);
+    SetisOpen(!isOpen);
     console.log(isOpen);
     setProfile(!profile);
     console.log(profile);

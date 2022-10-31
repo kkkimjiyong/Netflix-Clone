@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Right from "../Header/Rigth";
+import Right from "../Header/Right";
 import { useRef } from "react";
 import { useEffect } from "react";
 
