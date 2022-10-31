@@ -1,76 +1,160 @@
 import React from "react";
 import styled from "styled-components";
 import Right from "../Header/Rigth";
+import { useRef } from "react";
+import { useEffect } from "react";
+
 const PostBox = () => {
-  //소켓을 받아오는 것
+  //스크롤 처음에 아래에 위치하게하기
+  const scrollRef = useRef();
+  console.log(scrollRef.current);
+  useEffect(() => {
+    // 현재 스크롤 위치 === scrollRef.current.scrollTop
+    // 스크롤 길이 === scrollRef.current.scrollHeight
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
+
   return (
-    <>
-      <PostBoxDiv>
-        <DateBtn>10월 28일</DateBtn>
-        <ProfileBox>
-          <ProfileImg />
-          <ProfileNic>김지용(React 기술매니저) </ProfileNic>
-          <ProfileTime>오전11:05</ProfileTime>
-        </ProfileBox>
+    <PostCtn ref={scrollRef}>
+      <PostReverseCtn2>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
 
-        <TextBox>
-          안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
-          최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로 슬랙의
-          9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및 교류가
-          이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는 본
-          게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
-          이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
-          완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
-          :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
-          초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
-        </TextBox>
-      </PostBoxDiv>
-      <PostBoxDiv>
-        <DateBtn>10월 28일</DateBtn>
-        <ProfileBox>
-          <ProfileImg />
-          <ProfileNic>김지용(React 기술매니저) </ProfileNic>
-          <ProfileTime>오전11:05</ProfileTime>
-        </ProfileBox>
+          <TextBox>
+            안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
+            최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로
+            슬랙의 9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및
+            교류가 이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는
+            본 게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
+            이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
+            완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
+            :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
+            초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
+          </TextBox>
+        </PostBoxDiv>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
 
-        <TextBox>
-          안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
-          최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로 슬랙의
-          9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및 교류가
-          이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는 본
-          게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
-          이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
-          완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
-          :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
-          초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
-        </TextBox>
-      </PostBoxDiv>
-      <PostBoxDiv>
-        <DateBtn>10월 28일</DateBtn>
-        <ProfileBox>
-          <ProfileImg />
-          <ProfileNic>김지용(React 기술매니저) </ProfileNic>
-          <ProfileTime>오전11:05</ProfileTime>
-        </ProfileBox>
+          <TextBox>
+            안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
+            최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로
+            슬랙의 9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및
+            교류가 이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는
+            본 게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
+            이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
+            완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
+            :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
+            초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
+          </TextBox>
+        </PostBoxDiv>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
 
-        <TextBox>
-          안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
-          최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로 슬랙의
-          9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및 교류가
-          이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는 본
-          게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
-          이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
-          완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
-          :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
-          초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
-        </TextBox>
-      </PostBoxDiv>
-    </>
+          <TextBox>
+            안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
+            최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로
+            슬랙의 9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및
+            교류가 이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는
+            본 게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
+            이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
+            완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
+            :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
+            초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
+          </TextBox>
+        </PostBoxDiv>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
+
+          <TextBox>
+            안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
+            최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로
+            슬랙의 9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및
+            교류가 이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는
+            본 게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
+            이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
+            완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
+            :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
+            초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
+          </TextBox>
+        </PostBoxDiv>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
+
+          <TextBox>
+            안녕하세요, 항해99 구름 매니저입니다.:활짝_웃다: :짠:항해99 9기에
+            최종적으로 합격하신 여러분들을 진심으로 축하합니다!:짠: 앞으로
+            슬랙의 9기 공지방, 잡담방, 질문방 등에서 주요 활동에 대한 안내 및
+            교류가 이뤄질 예정입니다! 합격 후, 슬랙에 처음 접속하신 분들께서는
+            본 게시글에 성함, 슬랙 가입에 사용하신 이메일을 댓글로 남겨주세요!
+            이메일은 반드시 슬랙 가입에 사용하신 이메일로 작성해주세요 이미 초대
+            완료 되신 분들은 다시 댓글을 달지 않으셔도 괜찮습니다 :)
+            :흰색_확인_표시:댓글 예시) 김항해(9기), example@naver.com 9기 슬랙
+            초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
+          </TextBox>
+        </PostBoxDiv>
+        <PostBoxDiv>
+          <DateBtn>10월 28일</DateBtn>
+          <ProfileBox>
+            <ProfileImg />
+            <ProfileNic>김지용(React 기술매니저) </ProfileNic>
+            <ProfileTime>오전11:05</ProfileTime>
+          </ProfileBox>
+
+          <TextBox>마지막</TextBox>
+        </PostBoxDiv>
+      </PostReverseCtn2>
+    </PostCtn>
   );
 };
 
 export default PostBox;
 
+const PostCtn = styled.div`
+  overflow-y: scroll;
+  height: 844px;
+
+  ::-webkit-scrollbar {
+    width: 17px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #898989;
+    //스크롤바에 마진준것처럼 보이게
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 15px;
+  }
+`;
+
+const PostReverseCtn2 = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+`;
 const PostBoxDiv = styled.div`
   overflow-x: hidden;
   word-break: break-all;

@@ -1,17 +1,29 @@
 import React from "react";
-import styled from "styled-components";
+import MainInput from "./MainInput";
+import PostBox from "./PostBox";
+import { useState } from "react";
+
 const MainBody = () => {
+  // const socket = io("https://hi-prac.shop");
+
+  // { path: "/socket.io", transports: ["websocket"] },
+  // { cors: { origin: "ws://hi-prac.shop:5000" } }
+
+  // socket.on("receive", (message, from) => {
+  //   console.log(message);
+  //   setChatArr((chatArr) => [
+  //     ...chatArr,
+  //     { nickname: message.nickname, message: message.message, from: from },
+  //   ]);
+
+  const [chatArr, setChatArr] = useState([]);
+    
   return (
-    <>
-      <PostBox>포스트 박스 공간입니다.</PostBox>
-    </>
+    <div>
+      <PostBox />
+      <MainInput />
+    </div>
   );
 };
 
 export default MainBody;
-
-const PostBox = styled.div`
-  width: 100%;
-  height: 500px;
-  border: 0.3px solid black;
-`;

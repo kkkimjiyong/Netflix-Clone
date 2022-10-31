@@ -65,23 +65,30 @@ const Signup = () => {
           </div>
 
           <MidLine className="line">또는</MidLine>
+
           <a href={KAKAO_AUTH_URL}>
             <img
               // onClick={() => SetLoading(false)}
-              style={{ width: "300px", cursor: "pointer" }}
+              style={{
+                width: "200px",
+
+                cursor: "pointer",
+                marginTop: "20px",
+              }}
               src="https://i.ibb.co/r2DPcWy/kakao-login-medium-narrow.png"
               alt="kakao-login-medium-narrow"
               border="0"
             />
           </a>
-          <AppleBtn>
+
+          {/* <AppleBtn>
             <img
               style={{ width: "18px" }}
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png"
               alt="sd"
             />
             Apple로 계속
-          </AppleBtn>
+          </AppleBtn> */}
 
           <BottomTxt>
             <div style={{ color: "#616061", fontWeight: 500 }}>
@@ -137,21 +144,6 @@ const ContinueBtn = styled.div`
   }
 `;
 
-const GoogleBtn = styled.div`
-  gap: 10px;
-  font-size: 20px;
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  border: 2px solid #3b80f4;
-  color: #3b80f4;
-  width: 450px;
-  height: 50px;
-  border-radius: 5px;
-  cursor: pointer;
-`;
 const AppleBtn = styled.div`
   gap: 10px;
   font-size: 20px;

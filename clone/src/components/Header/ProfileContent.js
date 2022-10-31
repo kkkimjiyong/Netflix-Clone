@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const ProfileContent = () => {
+const ProfileContent = ({ isOpen, SetisOpen, setProfile, profile }) => {
+  const onClickProfile = () => {
+    SetisOpen(false);
+    console.log(isOpen);
+    setProfile(!profile);
+    console.log(profile);
+  };
   return (
     <ProfileDetail>
       <FirstBox>
@@ -17,13 +23,12 @@ const ProfileContent = () => {
         <StandardDiv>알림 일시 중지</StandardDiv>
       </FirstBox>
       <SecondBox>
-        <StandardDiv>프로필</StandardDiv>
+        <StandardDiv onClick={() => onClickProfile()}>프로필</StandardDiv>
         <StandardDiv>환경설정</StandardDiv>
       </SecondBox>
       <SecondBox>
         <StandardDiv>다운로드</StandardDiv>
       </SecondBox>
-
       <StandardDiv className="logout">로그아웃</StandardDiv>
     </ProfileDetail>
   );
