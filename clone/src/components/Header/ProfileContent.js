@@ -1,30 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import MyState from "./MyState";
 
-const ProfileContent = () => {
+const ProfileContent = ({ isOpen, SetisOpen, setProfile, profile }) => {
+  const onClickProfile = () => {
+    SetisOpen(false);
+    console.log(isOpen);
+    setProfile(!profile);
+    console.log(profile);
+  };
+
   return (
-    <ProfileDetail>
-      <FirstBox>
-        <ProfileBox>
-          <ProfileSqr></ProfileSqr>
-          김지용
-        </ProfileBox>
-        <PrfileSelect>
-          <option>상태업데이트</option>
-        </PrfileSelect>
-        <StandardDiv>자신을 자리비움</StandardDiv>
-        <StandardDiv>알림 일시 중지</StandardDiv>
-      </FirstBox>
-      <SecondBox>
-        <StandardDiv>프로필</StandardDiv>
-        <StandardDiv>환경설정</StandardDiv>
-      </SecondBox>
-      <ThirdBox>
-        <StandardDiv>다운로드</StandardDiv>
-      </ThirdBox>
+    <>
+      <ProfileDetail>
+        <FirstBox>
+          <ProfileBox>
+            <ProfileSqr></ProfileSqr>
+            김지용
+          </ProfileBox>
+          <PrfileSelect>
+            <option>상태업데이트</option>
+          </PrfileSelect>
+          <StandardDiv>자신을 자리비움</StandardDiv>
+          <StandardDiv>알림 일시 중지</StandardDiv>
+        </FirstBox>
+        <SecondBox>
+          <StandardDiv onClick={() => onClickProfile()}>프로필</StandardDiv>
 
-      <StandardDiv className="logout">로그아웃</StandardDiv>
-    </ProfileDetail>
+          <StandardDiv>환경설정</StandardDiv>
+        </SecondBox>
+        <ThirdBox>
+          <StandardDiv>다운로드</StandardDiv>
+        </ThirdBox>
+
+        <StandardDiv className="logout">로그아웃</StandardDiv>
+      </ProfileDetail>{" "}
+    </>
   );
 };
 const FirstBox = styled.div`
@@ -46,7 +57,7 @@ const ProfileDetail = styled.div`
   right: 150px;
   top: 55px;
   width: 330px;
-
+  z-index: 999;
   background-color: #f8f8f8;
   border: none;
   border-radius: 5px;

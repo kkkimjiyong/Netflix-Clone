@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import MainBody from "../components/MainBody/MainBody";
@@ -8,7 +8,13 @@ import SideHead from "../components/SiderBar/SideHead";
 import Left from "../components/Header/Left";
 import SideBody from "../components/SiderBar/SideBody";
 import PostBox from "../components/MainBody/PostBox";
+import MyState from "../components/Header/MyState";
+import MainInput from "../components/MainBody/MainInput";
+
 const MainPage = () => {
+  const [isOpen, SetisOpen] = useState(false);
+  const [profile, setProfile] = useState(false);
+
   return (
     <>
       <MainCtn>
@@ -16,14 +22,20 @@ const MainPage = () => {
           <Left />
 
           <Input />
-          <Rigth />
+          <Rigth
+            SetisOpen={SetisOpen}
+            isOpen={isOpen}
+            profile={profile}
+            setProfile={setProfile}
+          />
         </Hedaerc>
         <MeunBar className="menu">
           <SideHead />
           <SideBody />
         </MeunBar>
         <Mainbody className="body">
-          <PostBox />
+          <MainBody />
+          {profile && <MyState profile={profile} setProfile={setProfile} />}
         </Mainbody>
       </MainCtn>
     </>
@@ -72,7 +84,8 @@ const MeunBar = styled.div`
 
 const Mainbody = styled.div`
   background-color: #ffffff;
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
 `;
 
 export default MainPage;

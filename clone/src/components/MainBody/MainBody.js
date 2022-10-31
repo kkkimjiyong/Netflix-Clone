@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import MainInput from "./MainInput";
+import PostBox from "./PostBox";
 const MainBody = () => {
   return (
-    <>
-      <PostBox>포스트 박스 공간입니다.</PostBox>
-    </>
+    <MainCtn>
+      <PostBox />
+      <MainInput />
+    </MainCtn>
   );
 };
 
-export default MainBody;
-
-const PostBox = styled.div`
+const MainCtn = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 500px;
-  border: 0.3px solid black;
+  height: 100%;
 `;
+
+export default MainBody;
