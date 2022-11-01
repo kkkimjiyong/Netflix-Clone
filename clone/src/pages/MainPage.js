@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import MainBody from "../components/MainBody/MainBody";
@@ -14,6 +14,27 @@ import MainInput from "../components/MainBody/MainInput";
 const MainPage = () => {
   const [isOpen, SetisOpen] = useState(false);
   const [profile, setProfile] = useState(false);
+
+
+// const GetUserInfo =() => {
+//   try {
+    
+//   } catch (error) {
+    
+//   }
+// }
+
+// const GetMsg =() => {
+//   try {
+    
+//   } catch (error) {
+    
+//   }
+// }
+
+//   useEffect(() => {
+    
+//   },[])
 
   return (
     <>

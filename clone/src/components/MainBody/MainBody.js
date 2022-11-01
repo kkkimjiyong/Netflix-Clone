@@ -17,7 +17,7 @@ const MainBody = () => {
   //   ]);
 
   const [chatArr, setChatArr] = useState([]);
-    
+
   return (
     <div>
       <PostBox />
