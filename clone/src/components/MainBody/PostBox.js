@@ -64,6 +64,7 @@ const PostBox = () => {
           초대 부탁드립니다! +5 10개의 댓글 3개월 전 마지막 댓글스레드 보기
         </TextBox>
       </PostBoxDiv>
+
       <PostBoxDiv>
         <DateBtn>10월 28일</DateBtn>
         <ProfileBox>
