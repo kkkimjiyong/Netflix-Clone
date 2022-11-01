@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import WatchIconItem from "../../element/WatchIcon";
 import { CloseOutlined } from "@ant-design/icons";
 import { IoTimeOutline, IoEllipsisVertical } from "react-icons/io5";
-const MyState = ({ profile, setProfile }) => {
+import ProfileModal from "../MainBody/ProfileModal";
+import { useState } from "react";
+const MyState = ({ profile, setProfile, modalIsOn, setModalIsOn }) => {
+  console.log(modalIsOn);
   return (
     <MystateCtn>
       <ProfilTextarea>
@@ -16,7 +18,7 @@ const MyState = ({ profile, setProfile }) => {
         <Postimg src="https://ifh.cc/g/YOrnMQ.jpg"></Postimg>
         <ProfileNameDiv>
           <span>김재우(9기)</span>
-          <button>편집</button>
+          <button onClick={() => setModalIsOn(!modalIsOn)}>편집</button>
         </ProfileNameDiv>
         <NamePronunciation>재우</NamePronunciation>
         <OnlineState>온라인</OnlineState>
@@ -35,10 +37,13 @@ const MyState = ({ profile, setProfile }) => {
         <span>연락처 정보</span>
         <button>Edit</button>
       </ContactInfo>
-      <div>
+      <AddressInfo>
         <div>이메일 주소</div>
         <div>Phone</div>
-      </div>
+      </AddressInfo>
+      {modalIsOn && (
+        <ProfileModal modalIsOn={modalIsOn} setModalIsOn={setModalIsOn} />
+      )}
     </MystateCtn>
   );
 };
@@ -124,6 +129,7 @@ const OnlineState = styled.div`
 const TimeBox = styled.div`
   margin-left: 20px;
   font-size: 14px;
+  display: flex;
   align-items: center;
 `;
 const StateButtonArea = styled.div`
@@ -179,4 +185,9 @@ const ContactInfo = styled.div`
       text-decoration: underline;
     }
   }
+`;
+const AddressInfo = styled.div`
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 20px;
 `;

@@ -11,7 +11,6 @@ const ProfileContent = ({ isOpen, SetisOpen, setProfile, profile }) => {
   };
 
   return (
-<<<<<<< HEAD
     <>
       <ProfileDetail>
         <FirstBox>
@@ -27,34 +26,12 @@ const ProfileContent = ({ isOpen, SetisOpen, setProfile, profile }) => {
         </FirstBox>
         <SecondBox>
           <StandardDiv onClick={() => onClickProfile()}>프로필</StandardDiv>
-=======
-    <ProfileDetail>
-      <FirstBox>
-        <ProfileBox>
-          {/* 사용자의 프로필사진이 들어가는 곳  */}
-          <ProfileSqr></ProfileSqr>
-          김지용
-        </ProfileBox>
-        <PrfileSelect>
-          <option>상태업데이트</option>
-        </PrfileSelect>
-        <StandardDiv>자신을 자리비움</StandardDiv>
-        <StandardDiv>알림 일시 중지</StandardDiv>
-      </FirstBox>
-      <SecondBox>
-        <StandardDiv>프로필</StandardDiv>
-        <StandardDiv>환경설정</StandardDiv>
-      </SecondBox>
-      <SecondBox>
-        <StandardDiv>다운로드</StandardDiv>
-      </SecondBox>
->>>>>>> b4356d0eab342ce91bd0af446183eb148b8a9f2a
 
           <StandardDiv>환경설정</StandardDiv>
         </SecondBox>
-        <ThirdBox>
+        <SecondBox>
           <StandardDiv>다운로드</StandardDiv>
-        </ThirdBox>
+        </SecondBox>
 
         <StandardDiv className="logout">로그아웃</StandardDiv>
       </ProfileDetail>{" "}

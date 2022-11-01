@@ -8,10 +8,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 const Confirm = () => {
   const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
-  const email = confirmdata?.payload;
+  const email = confirmdata?.payload?.email;
+  console.log(email);
   const slack = confirmdata.data?.message;
-
+  const SKEY = process.env.REACT_APP_SKEY;
   const dispatch = useDispatch();
+
   const [Confirmcode, SetConfirmcode] = useState({
     one: "",
     two: "",
@@ -37,7 +39,7 @@ const Confirm = () => {
         Confirmcode.six ===
       slack
     ) {
-      dispatch(__confirmSlack(email));
+      dispatch(__confirmSlack({ email, SKEY: SKEY }));
       navigate("/");
     } else {
       return alert("코드가 맞지 않습니다!");

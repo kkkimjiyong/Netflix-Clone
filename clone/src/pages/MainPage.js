@@ -10,11 +10,13 @@ import SideBody from "../components/SiderBar/SideBody";
 import PostBox from "../components/MainBody/PostBox";
 import MyState from "../components/Header/MyState";
 import MainInput from "../components/MainBody/MainInput";
+import ProfileModal from "../components/MainBody/ProfileModal";
 
 const MainPage = () => {
   const [isOpen, SetisOpen] = useState(false);
   const [profile, setProfile] = useState(false);
-
+  const [modalIsOn, setModalIsOn] = useState(false);
+  // console.log("Modal", modalIsOn);
   return (
     <>
       <MainCtn>
@@ -34,8 +36,18 @@ const MainPage = () => {
           <SideBody />
         </MeunBar>
         <Mainbody className="body">
+          {modalIsOn && (
+            <ProfileModal modalIsOn={modalIsOn} setModalIsOn={setModalIsOn} />
+          )}
           <MainBody />
-          {profile && <MyState profile={profile} setProfile={setProfile} />}
+          {profile && (
+            <MyState
+              profile={profile}
+              setProfile={setProfile}
+              modalIsOn={modalIsOn}
+              setModalIsOn={setModalIsOn}
+            />
+          )}
         </Mainbody>
       </MainCtn>
     </>

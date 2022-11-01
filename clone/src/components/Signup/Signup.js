@@ -10,11 +10,12 @@ const Signup = () => {
   const dispatch = useDispatch();
   const [isEdit, SetisEdit] = useState(true);
   const [slack, setSlack] = useState("");
-  const SKEY = process.env.REACT_APP_SKEY;
+
+  console.log(process.env.REACT_APP_SKEY);
   const onSubmitHandler = () => {
     SetisEdit(!isEdit);
     dispatch(clearSlack());
-    dispatch(__addSlack({ email: slack, SKEY: SKEY }));
+    dispatch(__addSlack({ email: slack }));
   };
   const onChangeHandler = (e) => {
     setSlack(e.target.value);
