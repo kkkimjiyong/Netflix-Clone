@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const ProfileModal = ({ modalIsOn, setModalIsOn }) => {
-  const [visible, setVisible] = useState(false);
-  console.log(modalIsOn);
   return (
     <>
       <ProfileModalCtn>

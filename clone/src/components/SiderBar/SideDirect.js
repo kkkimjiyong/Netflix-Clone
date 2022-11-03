@@ -1,32 +1,31 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import ModalUser from "../modal/modalUser";
 import styled from "styled-components";
 
-const SideDirect = () => {
-  const [Users, GetUsers] = useState();
-
-  const GetUser = async () => {
-    try {
-      const { data } = await axios.get("http://43.200.178.84/members");
-      console.log(data);
-      GetUsers(data);
-    } catch (error) {
-      console.log(error);
-    }
+const SideDirect = ({ User, GetUsers }) => {
+  const [isOpen, SetisOpen] = useState(false);
+  const close = () => {
+    SetisOpen(false);
   };
 
-  useEffect(() => {
-    GetUser();
-  }, []);
-
+  console.log(User);
   return (
     <div>
       <DirectCtn>
-        <DirectBox>다이렉트 메시지</DirectBox>
+        <DirectBox>
+          다이렉트 메시지
+          <div onClick={() => SetisOpen(!isOpen)}>버튼</div>
+        </DirectBox>
+
+        {User?.map((item) => (
+          <div key={item.id}>{item.profileName}</div>
+        ))}
       </DirectCtn>
+      <ModalUser isOpen={isOpen} close={close} User={User} />
     </div>
   );
 };
+
 const DirectCtn = styled.div`
   color: #b8a6b9;
   font-size: 12px;
@@ -41,7 +40,10 @@ const DirectCtn = styled.div`
 `;
 
 const DirectBox = styled.div`
+  display: flex;
   font-size: 14px;
+  justify-content: space-between;
+  flex-direction: row;
   padding: 4px 4px 4px 20px;
   color: #b8a6b9;
   font-weight: 700;

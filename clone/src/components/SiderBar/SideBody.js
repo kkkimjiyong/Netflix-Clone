@@ -4,12 +4,25 @@ import SideChannel from "./SideChannel";
 import SideDirect from "./SideDirect";
 import SideFeat from "./SideFeat";
 
-const SideBody = () => {
+const SideBody = ({
+  PostChannel,
+  SetChannels,
+  Channels,
+  User,
+  Channel,
+  SetChannel,
+}) => {
   return (
     <>
       <SideFeat />
-      <SideChannel />
-      <SideDirect />
+      <SideChannel
+        SetChannels={SetChannels}
+        Channels={Channels}
+        PostChannel={PostChannel}
+        Channel={Channel}
+        SetChannel={SetChannel}
+      />
+      <SideDirect User={User} />
     </>
   );
 };

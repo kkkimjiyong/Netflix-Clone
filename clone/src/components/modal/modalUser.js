@@ -1,43 +1,40 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import axios from "axios";
-
-const Modal = ({ isOpen, SetisOpen, SetChannels, Channels }) => {
+const ModalUser = ({ isOpen, close, Channels, SetChannels, User }) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-
-  const PostChannel = async (channel) => {
-    try {
-      const { data } = await axios.post("http://43.200.178.84/room", {
-        room: channel,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log(Channels);
-  const onClickHandler = () => {
-    console.log(Channels);
-    SetChannels([...Channels, { room: channelName }]);
-    PostChannel(channelName);
-  };
-
   const [channelName, SetchannelName] = useState();
+
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className="modalback">
       {isOpen ? (
         <ModalCtn>
           <ModalHeader>
-            <CloseBtn onClick={() => SetisOpen(!isOpen)}>&times;</CloseBtn>
+            <CloseBtn onClick={close}>&times;</CloseBtn>
           </ModalHeader>
 
           <ModalBody>
             <input onChange={(e) => SetchannelName(e.target.value)} />
-            <button onClick={() => onClickHandler()}>전송</button>
+            <button
+              onClick={() => SetChannels([...Channels, { user: channelName }])}
+            >
+              전송
+            </button>
+            {User.map((item) => (
+              <ModalTextDiv
+                onClick={() =>
+                  localStorage.setItem("channel", item.profileName)
+                }
+                key={item.name}
+              >
+                {item.profileName}
+              </ModalTextDiv>
+            ))}
           </ModalBody>
+
           <footer>
-            <button className="close" onClick={() => SetisOpen(!isOpen)}>
+            <button className="close" onClick={close}>
               close
             </button>
           </footer>
@@ -89,5 +86,16 @@ const CloseBtn = styled.div`
     background-color: #6e4d6f;
   }
 `;
+const ModalTextDiv = styled.div`
+  top: 0px;
+  width: 100px;
+  height: 30px;
+  z-index: 1000;
+  color: black;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+`;
 
-export default Modal;
+export default ModalUser;

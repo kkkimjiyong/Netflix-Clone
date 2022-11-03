@@ -9,8 +9,6 @@ const Confirm = () => {
   const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
   const email = confirmdata?.payload?.email;
-  console.log(email);
-  console.log(confirmdata);
   const slack = confirmdata.data?.message;
   const SKEY = process.env.REACT_APP_SKEY;
   const dispatch = useDispatch();
@@ -23,7 +21,6 @@ const Confirm = () => {
     five: "",
     six: "",
   });
-  console.log(Confirmcode.one);
   //각각의 input 창에 대한 값 설정
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
