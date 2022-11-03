@@ -9,7 +9,7 @@ const Confirm = () => {
   const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
   const email = confirmdata?.payload?.email;
-  const slack = confirmdata.data?.message;
+  const slack = confirmdata.data?.data;
   const SKEY = process.env.REACT_APP_SKEY;
   const dispatch = useDispatch();
 

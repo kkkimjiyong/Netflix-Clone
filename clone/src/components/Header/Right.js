@@ -7,7 +7,9 @@ import MyState from "./MyState";
 const Right = ({ isOpen, SetisOpen, profile, setProfile }) => {
   return (
     <div>
-      <ProfileBox onClick={() => SetisOpen(!isOpen)}></ProfileBox>{" "}
+      <ProfileBox onClick={() => SetisOpen(!isOpen)}>
+        <img src="https://ifh.cc/g/YOrnMQ.jpg" />
+      </ProfileBox>{" "}
       {isOpen && (
         <ProfileContent
           profile={profile}
@@ -28,6 +30,11 @@ const ProfileBox = styled.div`
   margin-top: 15px;
   position: absolute;
   right: 150px;
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+  }
   :hover {
     cursor: pointer;
     background-color: #6e4d6f;

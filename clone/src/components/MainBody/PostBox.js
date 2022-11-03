@@ -3,15 +3,19 @@ import styled from "styled-components";
 import Right from "../Header/Right";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const PostBox = ({ chatArr }) => {
+  const userinfo = useSelector((state) => state.slack.userinfo);
+  console.log(userinfo);
+
   //스크롤 처음에 아래에 위치하게하기
   const scrollRef = useRef();
   useEffect(() => {
     // 현재 스크롤 위치 === scrollRef.current.scrollTop
     // 스크롤 길이 === scrollRef.current.scrollHeight
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  });
+  }, []);
 
   return (
     <>
@@ -22,8 +26,8 @@ const PostBox = ({ chatArr }) => {
               <PostBoxDiv>
                 <DateBtn>{chat.date} </DateBtn>
                 <ProfileBox>
-                  <ProfileImg />
-                  <ProfileNic>{chat.email.split("@")[0]} </ProfileNic>
+                  <ProfileImg src="https://ifh.cc/g/YOrnMQ.jpg" />
+                  <ProfileNic>{chat.email} </ProfileNic>
                   <ProfileTime>오전11:05</ProfileTime>
                 </ProfileBox>
 
@@ -71,7 +75,7 @@ const DateBtn = styled.div`
   margin: auto;
 `;
 
-const ProfileImg = styled.div`
+const ProfileImg = styled.img`
   background-color: #5d3d5e;
   width: 35px;
   height: 35px;

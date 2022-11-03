@@ -19,7 +19,7 @@ const MainInput = ({ setChatArr, chatArr }) => {
     socket.emit("new_message", {
       message: Message,
       room: localStorage.getItem("channel"),
-      email: "wldyddkssud@naver.com",
+      email: localStorage.getItem("nic"),
       data: Date.now(),
     });
     SetMessage("");

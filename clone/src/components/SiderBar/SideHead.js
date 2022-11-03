@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import HeaderContent from "./HeaderContent";
-
+import { HiOutlinePencilSquare } from "react-icons/hi2";
 const SideHead = () => {
   const [isOpen, SetisOpen] = useState(false);
   return (
     <div>
       <Header onClick={() => SetisOpen(!isOpen)}>
         HangHae99
-        <PostBtn></PostBtn>
+        <PostBtn>
+          <HiOutlinePencilSquare style={{ color: "#350d36" }} />
+        </PostBtn>
       </Header>
       {isOpen && <HeaderContent />}
     </div>
@@ -30,7 +32,10 @@ const Header = styled.div`
 `;
 
 const PostBtn = styled.div`
-  background-color: #6e4d6f;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 10px;
   top: 20px;

@@ -45,7 +45,7 @@ export const __confirmSlack = createAsyncThunk(
     try {
       const data = await PostApi.postConfirmSlack(payload);
       console.log(data);
-      return thunkAPI.fulfillWithValue(data);
+      return thunkAPI.fulfillWithValue(data, payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -127,7 +127,8 @@ export const slackSlice = createSlice({
     [__confirmSlack.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-
+      const nic = action.payload.data.data.createMember.profileName;
+      localStorage.setItem("nic", nic);
       console.log(action.payload);
 
       state.userinfo = action.payload;
