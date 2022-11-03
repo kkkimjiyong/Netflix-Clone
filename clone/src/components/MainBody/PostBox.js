@@ -17,16 +17,6 @@ const PostBox = ({ chatArr }) => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, []);
 
-  var today = new Date();
-
-  var month = ("0" + (today.getMonth() + 1)).slice(-2);
-  var day = ("0" + today.getDate()).slice(-2);
-  var hours = ("0" + today.getHours()).slice(-2);
-  var minutes = ("0" + today.getMinutes()).slice(-2);
-  var seconds = ("0" + today.getSeconds()).slice(-2);
-
-  var timeString =
-    month + "/" + day + "/" + hours + ":" + minutes + ":" + seconds;
   return (
     <>
       <PostCtn ref={scrollRef}>
@@ -73,15 +63,6 @@ const PostBoxDiv = styled.div`
   width: 100%;
   /* height: 250px; */
   border-bottom: 0.7px solid #dddddd;
-`;
-
-const DateBtn = styled.div`
-  text-align: center;
-  height: 30px;
-  width: 180px;
-  border: 1px solid #dddddd;
-  border-radius: 30px;
-  margin: auto;
 `;
 
 const ProfileImg = styled.img`

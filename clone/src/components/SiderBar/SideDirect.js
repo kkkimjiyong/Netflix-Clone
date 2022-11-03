@@ -10,6 +10,11 @@ const SideDirect = ({ User, GetUsers }) => {
 
   console.log(User);
 
+  const onClickHandler = (aa) => {
+    localStorage.setItem("channel", aa);
+    window.location.reload();
+  };
+
   return (
     <div>
       <DirectCtn>
@@ -21,7 +26,7 @@ const SideDirect = ({ User, GetUsers }) => {
         </DirectBox>
 
         {User?.map((item) => (
-          <DirectDiv>
+          <DirectDiv onClick={() => onClickHandler(item.profileName)}>
             <DirectImg src="https://ifh.cc/g/YOrnMQ.jpg"></DirectImg>
             <div key={item.id}>{item.profileName}</div>
           </DirectDiv>
