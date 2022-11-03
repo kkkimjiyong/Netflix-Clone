@@ -7,7 +7,6 @@ import { io } from "socket.io-client";
 import axios from "axios";
 
 const MainInput = ({ setChatArr, chatArr }) => {
-  const { userinfo } = useSelector((state) => state.slack);
   const socket = io("http://43.200.178.84", {
     transports: ["websocket"],
   });
@@ -19,7 +18,7 @@ const MainInput = ({ setChatArr, chatArr }) => {
     socket.emit("new_message", {
       message: Message,
       room: localStorage.getItem("channel"),
-      email: "wldyddkssud@naver.com",
+      email: localStorage.getItem("nic"),
       data: Date.now(),
     });
     SetMessage("");
