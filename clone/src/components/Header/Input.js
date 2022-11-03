@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaFilter } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-const Input = () => {
+const Input = ({ isInputOpen, SetisInputOpen }) => {
   return (
     <div>
-      <HeadMainBtn>
+      <HeadMainBtn onClick={() => SetisInputOpen(!isInputOpen)}>
         HangHae99 검색
         <div styled={{ backGroundColor: "transparent" }}>
           <FaFilter

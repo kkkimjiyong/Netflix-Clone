@@ -6,6 +6,7 @@ import { PostApi } from "../mytools/instance";
 
 const initialState = {
   slack: [],
+  userinfo: {},
   isLoading: false,
   isSuccess: false,
   error: null,
@@ -116,6 +117,22 @@ export const slackSlice = createSlice({
       state.slack = action.payload;
     },
     [__addSlack.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+    [__confirmSlack.pending]: (state) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+    },
+    [__confirmSlack.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+
+      console.log(action.payload);
+
+      state.userinfo = action.payload;
+    },
+    [__confirmSlack.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },

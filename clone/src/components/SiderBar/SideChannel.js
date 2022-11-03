@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import Modal from "../modal/modal";
+import ChannelBox from "./ChannelBox";
 
-const SideChannel = () => {
-  const [isOpen, SetisOpen] = useState(false);
-  console.log(isOpen);
-  const close = () => {
-    SetisOpen(false);
-  };
-
-  const [Channels, SetChannels] = useState([{ name: "" }]);
+const SideChannel = ({
+  Channels,
+  PostChannel,
+  SetChannels,
+  Channel,
+  SetChannel,
+}) => {
+  const [isOpen, SetisOpen] = useState();
+  console.log(Channels);
   return (
     <div>
       <ChannelCtn>
@@ -17,15 +20,23 @@ const SideChannel = () => {
           채널
           <div onClick={() => SetisOpen(!isOpen)}>버튼</div>
         </ChannelHeader>
-        {Channels.map((channel) => {
-          return <ChannelBox>{channel.name}</ChannelBox>;
+        {Channels?.map((channel) => {
+          return (
+            <ChannelBox
+              Channel={Channel}
+              SetChannel={SetChannel}
+              SetChannels={SetChannels}
+              channel={channel}
+            />
+          );
         })}
       </ChannelCtn>
       <Modal
-        isOpen={isOpen}
-        close={close}
-        Channels={Channels}
         SetChannels={SetChannels}
+        Channels={Channels}
+        PostChannel={PostChannel}
+        isOpen={isOpen}
+        SetisOpen={SetisOpen}
       />
     </div>
   );
@@ -57,11 +68,4 @@ const ChannelHeader = styled.div`
   }
 `;
 
-const ChannelBox = styled.div`
-  padding: 4px 20px 4px 20px;
-  :hover {
-    background-color: #350d36;
-    cursor: pointer;
-  }
-`;
 export default SideChannel;

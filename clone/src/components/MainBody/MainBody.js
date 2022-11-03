@@ -1,28 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 import MainInput from "./MainInput";
 import PostBox from "./PostBox";
 import { useState } from "react";
-import styled from "styled-components";
 
-const MainBody = () => {
-  // const socket = io("https://hi-prac.shop");
-
-  // { path: "/socket.io", transports: ["websocket"] },
-  // { cors: { origin: "ws://hi-prac.shop:5000" } }
-
-  // socket.on("receive", (message, from) => {
-  //   console.log(message);
-  //   setChatArr((chatArr) => [
-  //     ...chatArr,
-  //     { nickname: message.nickname, message: message.message, from: from },
-  //   ]);
-
+const MainBody = ({ Channels, Channel }) => {
   const [chatArr, setChatArr] = useState([]);
-
+  console.log(chatArr);
   return (
     <MainCtn>
       <PostBox chatArr={chatArr} />
-      <MainInput chatArr={chatArr} setChatArr={setChatArr} />
+      <MainInput
+        Channel={Channel}
+        Channels={Channels}
+        setChatArr={setChatArr}
+        chatArr={chatArr}
+      />
     </MainCtn>
   );
 };

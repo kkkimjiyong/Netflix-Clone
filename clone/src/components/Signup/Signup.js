@@ -5,11 +5,13 @@ import Confirm from "./Confirm";
 import { useDispatch } from "react-redux";
 import { __addSlack } from "../../redux/slackSlice";
 import { clearSlack } from "../../redux/slackSlice";
+
 const Signup = () => {
   const dispatch = useDispatch();
   const [isEdit, SetisEdit] = useState(true);
   const [slack, setSlack] = useState("");
 
+  console.log(process.env.REACT_APP_SKEY);
   const onSubmitHandler = () => {
     SetisEdit(!isEdit);
     dispatch(clearSlack());
@@ -18,15 +20,6 @@ const Signup = () => {
   const onChangeHandler = (e) => {
     setSlack(e.target.value);
   };
-
-  let href = window.location.href;
-  //href값에서 code값만 거내오면 된다.
-  console.log(href);
-  let params = new URL(window.location.href).searchParams;
-  let code = params.get("code");
-
-  //이 코드를 백엔드로 보내주면됨
-  console.log(code);
 
   const REST_API_KEY = "52825ae71c4b6cef839a32553fcc6890";
   const REDIRECT_URI = "http://localhost:3000/signup/oauth";

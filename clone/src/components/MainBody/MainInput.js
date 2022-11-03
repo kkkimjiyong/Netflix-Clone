@@ -7,42 +7,54 @@ import { io } from "socket.io-client";
 import axios from "axios";
 
 const MainInput = ({ setChatArr, chatArr }) => {
-  // const { userinfo } = useSelector((state) => state.slack);
+  const { userinfo } = useSelector((state) => state.slack);
   const socket = io("http://43.200.178.84", {
     transports: ["websocket"],
   });
 
-  const [Message, SetMessage] = useState();
+  const [Message, SetMessage] = useState(100);
   console.log(Message);
   const onSubmithandler = () => {
     //보내는 룸네임(new_room에 들어가는 값과 같아야함.)
     socket.emit("new_message", {
       message: Message,
-      room: "good",
+      room: localStorage.getItem("channel"),
       email: "wldyddkssud@naver.com",
       data: Date.now(),
     });
+    SetMessage("");
     console.log(Message);
   };
 
-  // const GetChats = async () => {
-  //   try {
-  //     const { data } = await axios.get("http://43.200.178.84/chats");
-  //     console.log(data);
-  //     setChatArr(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const GetChats = async () => {
+    try {
+      const { data } = await axios.get("http://43.200.178.84/chats");
+      console.log(data);
+      setChatArr(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
+    GetChats();
+    console.log(1);
     //우리가 들어가고싶은 룸이름이 들어가고,
-    socket.emit("new_room", "good");
+    socket.emit("new_room", localStorage.getItem("channel"));
+
     //위에서 입장한 룸네임값으로 설정된 메세지만 들어온다.
     //나중에 서버에서 emit을 해줄때는 "receive"네임스페이스를 이용하면 더 좋을듯.
-    socket.on("receive", (message) => {
-      console.log(message);
-      setChatArr(message);
+    socket.on("receive", (msg) => {
+      console.log(msg);
+      setChatArr(msg);
+      // setChatArr((chatArr) => [
+      //   ...chatArr,
+      //   {
+      //     message: message.message,
+      //     email: message.email,
+      //     room: message.room,
+      //   },
+      // ]);
     });
   }, []);
 
@@ -52,7 +64,7 @@ const MainInput = ({ setChatArr, chatArr }) => {
     <InputCtn>
       <InputTopBox>각종 버튼들</InputTopBox>
       <InputMidBox
-        // value={Message}
+        value={Message}
         onChange={(e) => SetMessage(e.target.value)}
         placeholder="메시지 보내기"
       ></InputMidBox>

@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Right from "../Header/Right";
-import { useRef } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const PostBox = ({ chatArr }) => {
   //스크롤 처음에 아래에 위치하게하기
   const scrollRef = useRef();
-  console.log(scrollRef.current);
   useEffect(() => {
     // 현재 스크롤 위치 === scrollRef.current.scrollTop
     // 스크롤 길이 === scrollRef.current.scrollHeight
@@ -15,24 +14,25 @@ const PostBox = ({ chatArr }) => {
   });
 
   return (
-    <PostCtn ref={scrollRef}>
-      <PostReverseCtn2>
+    <>
+      <PostCtn ref={scrollRef}>
         {chatArr.map((chat) => {
-          return (
-            <PostBoxDiv>
-              <DateBtn>{chat.date} </DateBtn>
-              <ProfileBox>
-                <ProfileImg />
-                <ProfileNic>{chat.email.split("@")[0]} </ProfileNic>
-                <ProfileTime>오전11:05</ProfileTime>
-              </ProfileBox>
+          if (chat.room == localStorage.getItem("channel"))
+            return (
+              <PostBoxDiv>
+                <DateBtn>{chat.date} </DateBtn>
+                <ProfileBox>
+                  <ProfileImg />
+                  <ProfileNic>{chat.email.split("@")[0]} </ProfileNic>
+                  <ProfileTime>오전11:05</ProfileTime>
+                </ProfileBox>
 
-              <TextBox>{chat.message}</TextBox>
-            </PostBoxDiv>
-          );
+                <TextBox>{chat.message}</TextBox>
+              </PostBoxDiv>
+            );
         })}
-      </PostReverseCtn2>
-    </PostCtn>
+      </PostCtn>
+    </>
   );
 };
 
@@ -53,11 +53,6 @@ const PostCtn = styled.div`
     border: 4px solid transparent;
     border-radius: 15px;
   }
-`;
-
-const PostReverseCtn2 = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
 `;
 const PostBoxDiv = styled.div`
   overflow-x: hidden;

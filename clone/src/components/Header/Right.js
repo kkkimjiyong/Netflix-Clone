@@ -2,17 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import ProfileContent from "./ProfileContent";
+import MyState from "./MyState";
 
-const Right = ({ isOpen, SetisOpen, setProfile, profile }) => {
+const Right = ({ isOpen, SetisOpen, profile, setProfile }) => {
   return (
     <div>
       <ProfileBox onClick={() => SetisOpen(!isOpen)}></ProfileBox>{" "}
       {isOpen && (
         <ProfileContent
+          profile={profile}
+          setProfile={setProfile}
           isOpen={isOpen}
           SetisOpen={SetisOpen}
-          setProfile={setProfile}
-          profile={profile}
         />
       )}
     </div>

@@ -7,56 +7,80 @@ import Right from "../components/Header/Right";
 import SideHead from "../components/SiderBar/SideHead";
 import Left from "../components/Header/Left";
 import SideBody from "../components/SiderBar/SideBody";
-import PostBox from "../components/MainBody/PostBox";
 import MyState from "../components/Header/MyState";
-import MainInput from "../components/MainBody/MainInput";
+import ProfileModal from "../components/MainBody/ProfileModal";
+import axios from "axios";
 
 const MainPage = () => {
   const [isOpen, SetisOpen] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [modalIsOn, setModalIsOn] = useState(false);
+  const [isInputOpen, SetisInputOpen] = useState(false);
+  const [Channels, SetChannels] = useState([]);
+  const [Channel, SetChannel] = useState([]);
+  const [User, GetUsers] = useState();
 
-
-// const GetUserInfo =() => {
-//   try {
-    
-//   } catch (error) {
-    
-//   }
-// }
-
-// const GetMsg =() => {
-//   try {
-    
-//   } catch (error) {
-    
-//   }
-// }
-
-//   useEffect(() => {
-    
-//   },[])
+  const GetChannel = async () => {
+    try {
+      const { data } = await axios.get("http://43.200.178.84/room");
+      console.log(data);
+      SetChannels(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const GetUser = async () => {
+    try {
+      const { data } = await axios.get("http://43.200.178.84/members");
+      GetUsers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(User);
+  useEffect(() => {
+    GetUser();
+    GetChannel();
+  }, []);
 
   return (
     <>
       <MainCtn>
         <Hedaerc className="header">
           <Left />
-
-          <Input />
+          <Input isInputOpen={isInputOpen} SetisInputOpen={SetisInputOpen} />
           <Right
             SetisOpen={SetisOpen}
             isOpen={isOpen}
             profile={profile}
             setProfile={setProfile}
-          />
+          />{" "}
+          {isInputOpen && <InputModal />}
         </Hedaerc>
+
         <MeunBar className="menu">
           <SideHead />
-          <SideBody />
+          <SideBody
+            SetChannel={SetChannel}
+            Channel={Channel}
+            SetChannels={SetChannels}
+            Channels={Channels}
+            User={User}
+          />
         </MeunBar>
         <Mainbody className="body">
-          <MainBody />
-          {profile && <MyState />}
+          {modalIsOn && (
+            <ProfileModal modalIsOn={modalIsOn} setModalIsOn={setModalIsOn} />
+          )}
+          <MainBody Channel={Channel} Channels={Channels} />
+          {profile && (
+            <MyState
+              profile={profile}
+              setProfile={setProfile}
+              modalIsOn={modalIsOn}
+              setModalIsOn={setModalIsOn}
+            />
+          )}
         </Mainbody>
       </MainCtn>
     </>
@@ -105,9 +129,29 @@ const MeunBar = styled.div`
 
 const Mainbody = styled.div`
   background-color: #ffffff;
-  overflow-y: scroll;
   display: flex;
   flex-direction: row;
+`;
+
+const InputModal = styled.div`
+  z-index: 999;
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  width: 750px;
+  height: 300px;
+  border-radius: 10px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 17px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #898989;
+    //스크롤바에 마진준것처럼 보이게
+    background-clip: padding-box;
+    border: 4px solid black;
+    border-radius: 15px;
+  }
 `;
 
 export default MainPage;

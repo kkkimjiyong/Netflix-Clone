@@ -1,7 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SideDirect = () => {
+  const [Users, GetUsers] = useState();
+
+  const GetUser = async () => {
+    try {
+      const { data } = await axios.get("http://43.200.178.84/members");
+      console.log(data);
+      GetUsers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    GetUser();
+  }, []);
+
   return (
     <div>
       <DirectCtn>
