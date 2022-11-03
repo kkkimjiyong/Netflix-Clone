@@ -2,6 +2,7 @@ import React from "react";
 import MainInput from "./MainInput";
 import PostBox from "./PostBox";
 import { useState } from "react";
+import styled from "styled-components";
 
 const MainBody = () => {
   // const socket = io("https://hi-prac.shop");
@@ -19,11 +20,19 @@ const MainBody = () => {
   const [chatArr, setChatArr] = useState([]);
 
   return (
-    <div>
-      <PostBox />
-      <MainInput />
-    </div>
+    <MainCtn>
+      <PostBox chatArr={chatArr} />
+      <MainInput chatArr={chatArr} setChatArr={setChatArr} />
+    </MainCtn>
   );
 };
+
+const MainCtn = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
 
 export default MainBody;

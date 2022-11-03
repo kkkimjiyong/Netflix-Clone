@@ -1,13 +1,53 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { io } from "socket.io-client";
+import axios from "axios";
 
-const MainInput = () => {
+const MainInput = ({ setChatArr, chatArr }) => {
+  // const { userinfo } = useSelector((state) => state.slack);
+  const socket = io("http://43.200.178.84", {
+    transports: ["websocket"],
+  });
+
   const [Message, SetMessage] = useState();
   console.log(Message);
+  const onSubmithandler = () => {
+    //보내는 룸네임(new_room에 들어가는 값과 같아야함.)
+    socket.emit("new_message", {
+      message: Message,
+      room: "good",
+      email: "wldyddkssud@naver.com",
+      data: Date.now(),
+    });
+    console.log(Message);
+  };
 
-  // socket.emit("message" , Message)
+  // const GetChats = async () => {
+  //   try {
+  //     const { data } = await axios.get("http://43.200.178.84/chats");
+  //     console.log(data);
+  //     setChatArr(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  useEffect(() => {
+    //우리가 들어가고싶은 룸이름이 들어가고,
+    socket.emit("new_room", "good");
+    //위에서 입장한 룸네임값으로 설정된 메세지만 들어온다.
+    //나중에 서버에서 emit을 해줄때는 "receive"네임스페이스를 이용하면 더 좋을듯.
+    socket.on("receive", (message) => {
+      console.log(message);
+      setChatArr(message);
+    });
+  }, []);
+
+  console.log(chatArr);
+
   return (
     <InputCtn>
       <InputTopBox>각종 버튼들</InputTopBox>
@@ -17,7 +57,7 @@ const MainInput = () => {
         placeholder="메시지 보내기"
       ></InputMidBox>
       <InputBottomBox>
-        <SendIcon>
+        <SendIcon onClick={() => onSubmithandler()}>
           <RiSendPlane2Fill />
         </SendIcon>
       </InputBottomBox>
@@ -66,6 +106,7 @@ const InputBottomBox = styled.div`
 `;
 
 const SendIcon = styled.div`
+  cursor: pointer;
   left: 20px;
   width: 20px;
   height: 20px;
