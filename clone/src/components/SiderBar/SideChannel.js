@@ -18,7 +18,12 @@ const SideChannel = ({
       <ChannelCtn>
         <ChannelHeader>
           채널
-          <div onClick={() => SetisOpen(!isOpen)}>버튼</div>
+          <ChannelTxt
+            style={{ cursor: "pointer" }}
+            onClick={() => SetisOpen(!isOpen)}
+          >
+            버튼
+          </ChannelTxt>
         </ChannelHeader>
         {Channels?.map((channel) => {
           return (
@@ -65,6 +70,12 @@ const ChannelHeader = styled.div`
   :active {
     color: white;
     background-color: #1164a3;
+  }
+`;
+const ChannelTxt = styled.div`
+  cursor: pointer;
+  :hover {
+    color: white;
   }
 `;
 

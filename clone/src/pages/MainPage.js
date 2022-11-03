@@ -19,6 +19,7 @@ const MainPage = () => {
   const [Channels, SetChannels] = useState([]);
   const [Channel, SetChannel] = useState([]);
   const [User, GetUsers] = useState();
+  const [slack, setSlack] = useState("");
 
   const GetChannel = async () => {
     try {
@@ -137,11 +138,13 @@ const InputModal = styled.div`
   z-index: 999;
   position: absolute;
   top: 50px;
+  left: 550px;
   background-color: white;
   width: 750px;
   height: 300px;
   border-radius: 10px;
   overflow-y: scroll;
+  box-shadow: 0px 4px 4px 4px gray;
   ::-webkit-scrollbar {
     width: 17px;
   }

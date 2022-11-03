@@ -23,6 +23,7 @@ const ChannelTxt = styled.div`
   :hover {
     background-color: #350d36;
     cursor: pointer;
+    color: white;
   }
 `;
 

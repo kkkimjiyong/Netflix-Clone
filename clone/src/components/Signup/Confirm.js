@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearSlack, __addSlack, __confirmSlack } from "../../redux/slackSlice";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Confirm = () => {
+const Confirm = ({ Email }) => {
   const navigate = useNavigate();
   const confirmdata = useSelector((state) => state.slack.slack);
   const email = confirmdata?.payload?.email;
-  const slack = confirmdata.data?.message;
+  const slack = confirmdata.data?.data;
   const SKEY = process.env.REACT_APP_SKEY;
   const dispatch = useDispatch();
 
@@ -27,6 +27,8 @@ const Confirm = () => {
     SetConfirmcode({ ...Confirmcode, [name]: value });
   };
   //제출하기전에 이메일에 보내진 코드와 input 창에 넣어진 코드와 같은지 확인!
+
+  console.log(slack);
   const onSubmitHandler = () => {
     if (
       Confirmcode.one +
@@ -56,7 +58,7 @@ const Confirm = () => {
       <TextBox>코드는 이메일에서 확인하세요</TextBox>
       <TextMail>
         <span style={{ fontWeight: "600", color: "#454245", fontSize: "24px" }}>
-          wldyddkssud@naver.com
+          {Email}
         </span>
         에 6자리 코드를 전송했습니다. 코드는 잠시 후에 만료되니 서둘러
         입력하세요.

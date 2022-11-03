@@ -8,7 +8,9 @@ const MyState = ({ profile, setProfile, modalIsOn, setModalIsOn }) => {
     <MystateCtn>
       <ProfilTextarea>
         <ProfileSpan>프로필</ProfileSpan>
-        <ProfileButton onClick={() => setProfile(!profile)}></ProfileButton>
+        <ProfileButton onClick={() => setProfile(!profile)}>
+          &times;
+        </ProfileButton>
       </ProfilTextarea>
       <Postarea>
         <Postimg src="https://ifh.cc/g/YOrnMQ.jpg"></Postimg>
@@ -72,14 +74,14 @@ const ProfileButton = styled.button`
   margin-right: 10px;
   width: 40px;
   height: 40px;
-  font-size: 18px;
+  font-size: 35px;
   background-color: transparent;
   border-radius: 5px;
   color: #606060;
   border: none;
   cursor: pointer;
   :hover {
-    background-color: #f6f6f6;
+    background-color: #b899b9;
   }
 `;
 const ProfileSpan = styled.span`

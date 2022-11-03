@@ -28,6 +28,7 @@ const FeatBox = styled.div`
   :hover {
     background-color: #350d36;
     cursor: pointer;
+    color: white;
   }
   :active {
     color: white;

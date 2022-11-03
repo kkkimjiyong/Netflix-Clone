@@ -9,16 +9,16 @@ import { clearSlack } from "../../redux/slackSlice";
 const Signup = () => {
   const dispatch = useDispatch();
   const [isEdit, SetisEdit] = useState(true);
-  const [slack, setSlack] = useState("");
+  const [Email, setEmail] = useState("");
 
   console.log(process.env.REACT_APP_SKEY);
   const onSubmitHandler = () => {
     SetisEdit(!isEdit);
     dispatch(clearSlack());
-    dispatch(__addSlack({ email: slack }));
+    dispatch(__addSlack({ email: Email }));
   };
   const onChangeHandler = (e) => {
-    setSlack(e.target.value);
+    setEmail(e.target.value);
   };
 
   const REST_API_KEY = "52825ae71c4b6cef839a32553fcc6890";
@@ -48,7 +48,7 @@ const Signup = () => {
           <InputBox
             type="text"
             name="slack"
-            value={slack}
+            value={Email}
             onChange={onChangeHandler}
             style={{ fontSize: 20 }}
             placeholder="name@work-email.com"
@@ -96,7 +96,7 @@ const Signup = () => {
           </div>
         </SignupCtn>
       ) : (
-        <Confirm />
+        <Confirm Email={Email} />
       )}
     </>
   );

@@ -9,16 +9,22 @@ const SideDirect = ({ User, GetUsers }) => {
   };
 
   console.log(User);
+
   return (
     <div>
       <DirectCtn>
         <DirectBox>
           다이렉트 메시지
-          <div onClick={() => SetisOpen(!isOpen)}>버튼</div>
+          <DirectHeader>
+            <DirectTxt onClick={() => SetisOpen(!isOpen)}>버튼</DirectTxt>
+          </DirectHeader>
         </DirectBox>
 
         {User?.map((item) => (
-          <div key={item.id}>{item.profileName}</div>
+          <DirectDiv>
+            <DirectImg src="https://ifh.cc/g/YOrnMQ.jpg"></DirectImg>
+            <div key={item.id}>{item.profileName}</div>
+          </DirectDiv>
         ))}
       </DirectCtn>
       <ModalUser isOpen={isOpen} close={close} User={User} />
@@ -54,6 +60,35 @@ const DirectBox = styled.div`
   :active {
     color: white;
     background-color: #1164a3;
+  }
+`;
+
+const DirectHeader = styled.div`
+  padding-right: 16px;
+`;
+
+const DirectImg = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+`;
+
+const DirectDiv = styled.div`
+  gap: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  :hover {
+    background-color: #350d36;
+    cursor: pointer;
+    color: white;
+  }
+`;
+
+const DirectTxt = styled.div`
+  cursor: pointer;
+  :hover {
+    color: white;
   }
 `;
 export default SideDirect;

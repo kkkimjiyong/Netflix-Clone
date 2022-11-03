@@ -9,7 +9,7 @@ const ModalCtn = styled.div`
   z-index: 999;
   position: absolute;
   top: 50px;
-  background-color: white;
+  background-color: ghostwhite;
   width: 750px;
   height: 300px;
   border-radius: 10px;

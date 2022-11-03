@@ -12,7 +12,7 @@ const MainInput = ({ setChatArr, chatArr }) => {
     transports: ["websocket"],
   });
 
-  const [Message, SetMessage] = useState(100);
+  const [Message, SetMessage] = useState();
   console.log(Message);
   const onSubmithandler = () => {
     //보내는 룸네임(new_room에 들어가는 값과 같아야함.)
@@ -62,7 +62,7 @@ const MainInput = ({ setChatArr, chatArr }) => {
 
   return (
     <InputCtn>
-      <InputTopBox>각종 버튼들</InputTopBox>
+      <InputTopBox></InputTopBox>
       <InputMidBox
         value={Message}
         onChange={(e) => SetMessage(e.target.value)}
