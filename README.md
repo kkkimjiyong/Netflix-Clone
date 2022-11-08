@@ -4,6 +4,7 @@
 2022.10.28 ~ 2022.11.03까지 1주간 진행된 클론프로젝트
 
 구성인원: FE/2명  BE/3명
+BE깃허브주소 : https://github.com/striker1826/FirstCloneProject
 
 ---
 
