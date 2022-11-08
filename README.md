@@ -7,6 +7,7 @@
    BE깃허브주소 : https://github.com/striker1826/FirstCloneProject
 
 ---
+#### 시연영상
 ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/113953473/200617026-23f84409-f420-4c58-9872-acc0cec75bb4.gif)
 
    
